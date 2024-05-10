@@ -2,7 +2,7 @@ import { useContext, useRef } from "react";
 import "./login.css";
 import { loginCall } from "../../apiCalls";
 import { AuthContext } from "../../context/AuthContext";
-import { CircularProgress } from "@mui/material";
+import  CircularProgress  from "@mui/material/CircularProgress";
 
 export default function Login() {
   const email = useRef();
@@ -21,9 +21,9 @@ export default function Login() {
     <div className="login">
       <div className="loginWrapper">
         <div className="loginLeft">
-          <h3 className="loginLogo">Lamasocial</h3>
+          <h3 className="loginLogo">Social App</h3>
           <span className="loginDesc">
-            Connect with friends and the world around you on Lamasocial.
+            Connect with friends and the world around you on Socila App.
           </span>
         </div>
         <div className="loginRight">
@@ -45,7 +45,7 @@ export default function Login() {
             />
             <button className="loginButton" type="submit" disabled={isFetching}>
               {isFetching ? (
-                <CircularProgress color="white" size="20px" />
+                <CircularProgress />
               ) : (
                 "Log In"
               )}
@@ -53,7 +53,7 @@ export default function Login() {
             <span className="loginForgot">Forgot Password?</span>
             <button className="loginRegisterButton">
               {isFetching ? (
-                <CircularProgress color="white" size="20px" />
+                <CircularProgress />
               ) : (
                 "Create a New Account"
               )}

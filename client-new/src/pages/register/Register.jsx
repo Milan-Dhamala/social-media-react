@@ -9,6 +9,8 @@ export default function Register() {
   const password = useRef();
   const passwordAgain = useRef();
   const history = useHistory();
+  // const BL = process.env.REACT_APP_BASE_LOC;
+
 
   const handleClick = async (e) => {
     e.preventDefault();
@@ -21,10 +23,26 @@ export default function Register() {
         password: password.current.value,
       };
       try {
-        await axios.post("/auth/register", user);
+        console.log(user)
+        await axios.post("http://localhost:8800/api/auth/register", user);
+        console.log("hello worls")
+
         history.push("/login");
-      } catch (err) {
-        console.log(err);
+      } catch (error) {
+        if (error.response) { 
+          // If server responded with a status code for a request 
+          console.log("Data ", error.response.data); 
+          console.log("Status ", error.response.status); 
+          console.log("Headers ", error.response.headers); 
+      } else if (error.request) { 
+          // Client made a request but response is not received 
+          console.log("called", error.request); 
+      } else { 
+          // Other case 
+          console.log("Error", error.message); 
+      } 
+      // Error handling here 
+      return res.status(401).send(error.message); 
       }
     }
   };

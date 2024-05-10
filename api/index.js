@@ -10,8 +10,11 @@ const authRoute = require("./routes/auth");
 const postRoute = require("./routes/posts");
 const router = express.Router();
 const path = require("path");
+var cors = require('cors')
 
 dotenv.config();
+
+app.use(cors());
 
 mongoose.connect(
   process.env.MONGO_URL,

@@ -3,10 +3,11 @@ import { Search, Person, Chat, Notifications } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
+//const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
 
 export default function Topbar() {
   const { user } = useContext(AuthContext);
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
@@ -46,8 +47,8 @@ export default function Topbar() {
           <img
             src={
               user.profilePicture
-                ? PF + user.profilePicture
-                : PF + "person/noAvatar.png"
+                ? `http://localhost:8800/images/${user.profilePicture}`
+                : `http://localhost:8800/images/person/noAvatar.png`
             }
             alt=""
             className="topbarImg"

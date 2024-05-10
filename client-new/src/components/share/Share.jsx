@@ -12,7 +12,7 @@ import axios from "axios";
 
 export default function Share() {
   const { user } = useContext(AuthContext);
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  //const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const desc = useRef();
   const [file, setFile] = useState(null);
 
@@ -30,11 +30,11 @@ export default function Share() {
       newPost.img = fileName;
       console.log(newPost);
       try {
-        await axios.post("/upload", data);
+        await axios.post("http://localhost:8800/api/upload", data);
       } catch (err) {}
     }
     try {
-      await axios.post("/posts", newPost);
+      await axios.post("http://localhost:8800/api/posts", newPost);
       window.location.reload();
     } catch (err) {}
   };
@@ -47,8 +47,8 @@ export default function Share() {
             className="shareProfileImg"
             src={
               user.profilePicture
-                ? PF + user.profilePicture
-                : PF + "person/noAvatar.png"
+                ? `http://localhost:8800/images/${user.profilePicture}`
+                : "http://localhost:8800/images/person/noAvatar.png"
             }
             alt=""
           />
